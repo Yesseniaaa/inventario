@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+
+{% block page_name%} Usuario {% endblock %}
+{% block page_description %}Desactivar Usuario {% endblock %}
+
+
+{% block content %}
+    <div class="m-5 pb-5">
+        <form method="post">
+            {% csrf_token %}
+            <h3>¿Desea desactivar al Usuario {{id}}?</h3>
+            <button type="submit" class="btn btn-danger">Desacivar</button>
+            <a class="btn btn-default" href="{% url 'listar_usuario' %}">Cancelar</a>
+        </form>
+    </div>
+{% endblock %}

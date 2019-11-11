@@ -1,0 +1,119 @@
+{% extends 'core/base.html' %}
+
+{% load staticfiles %}
+{% block custom_css %}
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
+{% endblock %}
+{% block page_name%} Estadisticas {% endblock %}
+{% block page_description %}Bienvenido {% endblock %}
+
+
+{% block content %}
+    <div class="m-5 pb-5">
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="">Productos</label>
+                        <select class="form-control" name="producto" id="select-producto">
+                        {% if productos %}
+                            {% for producto in productos %}
+                                <option value="{{producto.id_prod}}">{{producto.nombre}}</option>
+                            {% endfor %}
+                        {% else %}
+                            <h2>No hay registros de productos</h2>
+                        {% endif %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success">
+                    </div>
+
+                </form>
+                {% if productoBuscado %}
+                    <h1>Grafica para {{productoBuscado.nombre}}</h1>
+
+                <canvas id="myChart" width="400" height="400"></canvas>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <canvas id="grafico"></canvas>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.10/dist/sweetalert2.all.min.js"></script>
+    <script>
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            {% if registro_temporal_productos %}
+
+                    labels: [
+                        {% for registros in registro_temporal_productos %}
+                            "{{registros.created|date:'Y-m-d'}}",
+                        {% endfor %}
+                            ],
+                    datasets: [{
+                        label: 'Stock',
+                        data: [
+                            {% for registros in registro_temporal_productos %}
+                                {{registros.stock}},
+                            {% endfor %}
+                        ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+            {% endif %}
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+
+</script>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+
+{% block page_name%} Categorías {% endblock %}
+{% block page_description %}Listado de categorías{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="m-5 pb-5">
+        <table id="myTable" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if object_list %}
+                    {% for categoria in object_list %}
+                        {% if categoria.estado %}
+                            <tr>
+                                <td>{{ categoria.nombre }}</td>
+                                <td>{{ categoria.descripcion }}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{% url 'editar_categoria' pk=categoria.pk %}">Actualizar</a>
+                                    <a class="btn btn-danger" href="{% url 'categoria_desactivar' pk=categoria.pk %}">Desactivar</a>
+                                </td>
+                            </tr>
+                        {% elif  categoria.estado is False %}
+                            <tr style="color:GrayText;">
+                                <td>{{ categoria.nombre }}</td>
+                                <td>{{ categoria.descripcion }}</td>
+                                <td><a class="btn btn-default" href="{% url 'categoria_activar' pk=categoria.pk %}">Activar</a></td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <h2>No hay registros de categorías</h2>
+                {% endif %}
+            </tbody>
+        </table>
+        <a class="btn btn-success" href="{% url 'crear_categoria' %}">Crear una nueva categoría</a>
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="{% static 'mod_adquisiciones/js/DataTable.js' %}"></script>
+{% endblock %}

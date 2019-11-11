@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+
+{% block custom_css %}
+    <style type="text/css">
+    	.errorlist{
+    		background: #ff000029;
+    		border-radius: 5px;
+    		border: 1px solid #ff0000d1;
+    		color: #ff0000d1;
+    		padding: 8px 20px;
+    	}
+    </style>
+{% endblock %}
+
+{% block page_name%} Usuario {% endblock %}
+{% block page_description %}Ingrese datos del usuario {% endblock %}
+
+
+{% block content %}
+    <div class="m-5 pb-5">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+    <script src="{% static 'core/js/rut.js' %}"></script>
+
+{% endblock %}
