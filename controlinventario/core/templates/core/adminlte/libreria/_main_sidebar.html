@@ -1,0 +1,36 @@
+{% extends 'adminlte/lib/_main_sidebar.html' %}
+
+{% block nav_heading %}MENU PRINCIPAL{% endblock %}
+
+{% block nav_links %}
+    <li>
+        <a href="{% url 'index' %}">
+            <i class="fa fa-dashboard"></i> <span>Home</span>
+        </a>
+    </li>
+    
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-barcode"></i> <span>Inventario</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li>
+                <a href="{% url 'listar_producto' %}">
+                    <i class="fa fa-area-chart"></i> Productos
+                </a>
+                 <a href="{% url 'listar_categoria' %}">
+                    <i class="fa fa-dashboard"></i> Categorias
+                </a>
+                <a href="{% url 'listar_estadistica' %}">
+                    <i class="fa fa-refresh"></i> Estadistica
+                </a>
+            </li>
+            <li>
+
+            </li>
+        </ul>
+    </li>
+{% endblock nav_links %}
