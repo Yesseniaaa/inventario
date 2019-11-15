@@ -19,7 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('core.urls')),
     path('inventario/', include('inventario.urls')),
-    path('proveedor/', include('proveedor.urls')),
-    path('prestamo/', include('prestamo.urls')),
+    path('adquisiciones/', include('adquisiciones.urls')),
     path('admin/', admin.site.urls),
 ]

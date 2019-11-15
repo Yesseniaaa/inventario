@@ -18,6 +18,7 @@
                 <th>Estado</th>
                 <th>Nombre</th>
                 <th>Código barra</th>
+                <td>Precio compra</td>
                 <th>Stock</th>
                 <th>Merma</th>
                 <th>Descripción</th>
@@ -33,6 +34,7 @@
                             <td>3. Desactivado</td>
                             <td>{{ producto.nombre }}</td>
                             <td>{{ producto.cod_barra }}</td>
+                            <td>{{ producto.precio_compra }}</td>
                             <td>{{ producto.stock }}</td>
                             <td>{{ producto.merma }}</td>
                             <td>{{ producto.descripcion }}</td>
@@ -56,6 +58,7 @@
                             <td>1. Stock critico</td>
                             <td><a href="{% url 'mostrar_producto' pk=producto.pk %}" style="color:#FF0000;">{{ producto.nombre }}</a></td>
                             <td>{{ producto.cod_barra }}</td>
+                            <td>{{ producto.precio_compra }}</td>                            
                             <td>{{ producto.stock }}</td>
                             <td>{{ producto.merma }}</td>
                             <td>{{ producto.descripcion }}</td>
@@ -79,6 +82,7 @@
                             <td>2. Listo</td>
                             <td><a href="{% url 'mostrar_producto' pk=producto.pk %}" style="color:black">{{ producto.nombre }}</a></td>
                             <td>{{ producto.cod_barra }}</td>
+                            <td>{{ producto.precio_compra }}</td>
                             <td>{{ producto.stock }}</td>
                             <td>{{ producto.merma }}</td>
                             <td>{{ producto.descripcion }}</td>
@@ -106,7 +110,6 @@
     </table>
     <a class="btn btn-primary" href="{% url 'editar_stock' %}">Actualizar stock</a>
     <a class="btn btn-primary" href="{% url 'editar_merma' %}">Actualizar merma</a>
-    <a class="btn btn-primary" href="{% url 'crear_producto' %}">Ingresar Producto</a>
 
 </div>
 {% endblock %}

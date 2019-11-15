@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+
+
+{% block page_name%} Ingresos {% endblock %}
+{% block page_description %}Bienvenido al modulo de adquisiciones {% endblock %}
+
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <h3>¿Desea eliminar el registro de {{object.id}}</h3>
+        <button type="submit" class="btn btn-danger">Borrar</button>
+        <a class="btn btn-default" href="{% url 'adquisiciones_ingresos' %}">Cancelar</a>
+    </form>
+{% endblock %}

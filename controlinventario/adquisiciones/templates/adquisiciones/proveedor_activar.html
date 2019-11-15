@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+
+
+{% block page_name%} Proveedor {% endblock %}
+{% block page_description %}Activar proveedor {% endblock %}
+
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <h3>¿Desea activar el registro de {{proveedor.nombre}}</h3>
+        <button type="submit" class="btn btn-success">Activar</button>
+        <a class="btn btn-default" href="{% url 'adquisiciones_ordenes_adquisiciones' %}">Cancelar</a>
+    </form>
+{% endblock %}

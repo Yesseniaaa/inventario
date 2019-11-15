@@ -51,13 +51,6 @@ def CategoriaDesactivar(request,pk):
 
 # Clase Producto
 
-class CrearProducto(SuccessMessageMixin, CreateView):
-    model = Producto
-    form_class = ProductoForm
-    template_name = 'inventario/crear_producto.html'
-    success_url = reverse_lazy('crear_producto')
-    success_message = "El producto fue creado con éxito."
-
 class ListarProducto(ListView):
     model = Producto
     template_name = 'inventario/listar_producto.html'
@@ -81,6 +74,11 @@ class MostrarProducto(DetailView):
     model = Producto
     template_name = 'inventario/mostrar_producto.html'
 
+def HistorialPrecio(request,pk):
+    precios = RegistroTemporalProducto.objects.filter(id_prod=pk)
+    producto = Producto.objects.get(id_prod=pk)
+    context = {'precios':precios, 'producto':producto}
+    return render(request, 'inventario/historial_precio.html', context)
 
 def EditarStock(request):
     productos = Producto.objects.all()

@@ -1,5 +1,4 @@
 from django.db import models
-from proveedor.validators import ValidateMayorCero
 from .validators import *
 
 ESTADOS = (
@@ -16,10 +15,7 @@ class Categoria(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.nombre
-
-        #ESTO HABIA
-        #return '{}'.format(self.nombre)
+        return '{}'.format(self.nombre)
 
 class Producto(models.Model):
     id_prod = models.AutoField(primary_key=True)
@@ -27,6 +23,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=50)
     cod_barra = models.CharField(max_length=50, null=True, blank=True)
     descripcion = models.CharField(max_length=100)
+    precio_compra = models.IntegerField(validators=[ValidateMayorCero])
     stock = models.IntegerField(validators=[ValidateNumeroPositivo], default=0)
     stock_min = models.IntegerField(validators=[ValidateNumeroPositivo], default=0)
     merma = models.IntegerField(validators=[ValidateNumeroPositivo], default=0)
@@ -40,6 +37,7 @@ class Producto(models.Model):
         return '{}'.format(self.nombre)
 
 class RegistroTemporalProducto(models.Model):
+    precio_compra = models.IntegerField(validators=[ValidateMayorCero], null=True, blank=True)
     stock = models.IntegerField(validators=[ValidateMayorCero], null=True, blank=True)
     id_prod = models.ForeignKey(Producto, on_delete=models.CASCADE)
     created = models.DateField(auto_now_add=True)

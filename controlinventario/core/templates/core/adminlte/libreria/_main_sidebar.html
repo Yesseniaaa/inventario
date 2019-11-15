@@ -33,4 +33,37 @@
             </li>
         </ul>
     </li>
+
+    <li class="treeview">
+        <a href="#">
+            <i class="glyphicon glyphicon-inbox"></i> <span>Adquisiciones</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            {# <li> #}
+                {# <a href="{% url 'adquisiciones_ingresos' %}"> #}
+                    {# <i class="fa fa-folder"></i> Listar Ingresos #}
+                {# </a> #}
+            {# </li>  #}
+            <li>
+                <a href="{% url 'adquisiciones_proveedores' %}">
+                    <i class="fa fa-drivers-license"></i> Listar Proveedores
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'adquisiciones_ordenes_adquisiciones' %}">
+                    <i class="fa fa-file-pdf-o"></i> Listar Ordenes de Adquisicion
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'adquisiciones_producto' %}">
+                    <i class="fa fa-file-pdf-o"></i> Adquirir un nuevo Producto
+                </a>
+            </li>
+
+        </ul>
+    </li>
+          
 {% endblock nav_links %}

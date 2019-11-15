@@ -7,3 +7,9 @@ def ValidateNumeroPositivo(value):
         raise ValidationError(_("El valor no puede negativo"))
     else:
         return value
+
+def ValidateMayorCero(value):
+    if value <= 0:
+        raise ValidationError(_("El valor no puede ser 0 o negativo"))
+    else:
+        return value

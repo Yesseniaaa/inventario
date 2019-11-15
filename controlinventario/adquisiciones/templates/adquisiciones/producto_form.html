@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+
+{% block page_name%} Productos {% endblock %}
+{% block page_description %}Ingrese los datos del producto {% endblock %}
+
+
+{% block content %}
+		{% if mensaje == 'success' %}
+			<h4 class="alert alert-success">Se añadio correctamente el producto</h4>
+		{% elif mensaje == 'errorUnique' %}
+			<h4 class="alert alert-error">Ya existe ese producto</h4>
+    	{% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+{% endblock %}
