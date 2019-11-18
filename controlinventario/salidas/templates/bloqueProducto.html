@@ -1,0 +1,12 @@
+<div class="form-group row" id="row-productos-{{producto.id_prod}}">
+	<div class="col-xs-4">
+		<label class="">{{producto.nombre}}</label>
+	</div>
+	<div class="col-xs-4">
+		<input value="{{producto.precio_venta}}" class="productos_precio" name="productos_precio" min="0" type="number">
+	</div>
+	<div class="col-xs-4">
+		<input value="0" class="productos_cantidad" name="productos_cantidad" min="0" type="number">
+	</div>
+	<input type="hidden" name="productos_ids" value="{{producto.id_prod}}">
+</div>

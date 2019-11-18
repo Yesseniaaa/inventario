@@ -1,0 +1,73 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+
+
+
+{% block page_name%} Salida{% endblock %}
+{% block page_description %} Detalle {% endblock %}
+
+
+{% block content %}
+		<p>
+			<label>N° salida</label>
+			<input type="text" class="form-control" readonly="readonly" value="{{salidas.id}}">
+		</p>
+		<p>
+			<label>Tipo:</label>
+			<input type="text" class="form-control" readonly="readonly" value="{{salidas.tipo}}">
+		</p>
+		<p>
+			<label>Funcionario: </label>
+			<input type="text" class="form-control" readonly="readonly" value="{{salidas.id_funcionario}}">
+		</p>
+		<p>
+			<label>Recinto: </label>
+			<input type="text" class="form-control" readonly="readonly" value="{{ salidas.id_recinto }}">
+		</p>
+        <p>
+			<label>Total:</label>
+			<input type="text" id="TotalSalida" class="form-control" readonly="readonly" ">
+		</p>
+        <p>
+        	<div class="container">
+        		<div class="row">
+	        		<div class="col-xs-4">
+	        			<label for="">Productos:</label>
+	        		</div>
+
+	        		<div class="col-xs-4">
+	        			<label for="">Precio Venta:</label>
+	        		</div>
+	        		<div class="col-xs-4">
+	        			<label for="">Cantidad:</label>
+	        		</div>
+	        	</div>
+	        	{% if sal_prod %}
+			        {% for salidas in sal_prod %}
+			            <div class="form-group row">
+			                <div class="col-xs-4">
+			            <label class="">{{ salidas.id_prod.nombre }}</label>
+			            </div>
+				            <div class="col-xs-4">
+				                <input readonly class="productos_precio" value="{{ salidas.precio }}">
+				            </div>
+				            <div class="col-xs-4">
+				                <input readonly class="productos_cantidad" value="{{ salidas.cantidad }}">
+				            </div>
+			            </div>
+
+			    	{% endfor %}
+				{% else %}
+				    <h1> No hay informacion que mostrar </h1>
+				{% endif %}
+        	</div>
+        </p>
+        <a class="btn btn-warning" href="{% url 'salidas_list' %}">Volver</a>
+
+
+{% endblock %}
+
+{% block custom_js %}
+    <script src="{% static 'core/js/totalventa.js' %}"></script>
+
+{% endblock %}

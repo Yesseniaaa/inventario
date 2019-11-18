@@ -17,7 +17,6 @@ class Proveedor(models.Model):
     email = models.CharField(max_length=30, default='N/A', unique=True)
     estado = models.BooleanField(default=True)
     nom_cont = models.CharField(max_length=20)
-    giro = models.CharField(max_length=100)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 

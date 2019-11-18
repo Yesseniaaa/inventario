@@ -67,7 +67,6 @@ class ProveedorForm(forms.ModelForm):
             'email' : 'Email',
             #'estado' : 'estado',
             'nom_cont' : 'Nombre Contacto',
-            'giro' : 'Giro'
         }
 
         widgets = {
@@ -77,7 +76,6 @@ class ProveedorForm(forms.ModelForm):
             'telefono' : forms.TextInput(attrs={'class':'form-control'}),
             'email' : forms.EmailInput(attrs={'class':'form-control'}),
             'nom_cont' : forms.TextInput(attrs={'class':'form-control'}),
-            'giro' : forms.TextInput(attrs={'class':'form-control'})
         }
 
 

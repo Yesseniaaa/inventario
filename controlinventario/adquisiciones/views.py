@@ -187,19 +187,16 @@ class OrdenAdqState(View):
             if registros.count() is None:
                 RegistroTemporalProducto.objects.create(id_prod_id=ingreso.id_prod_id,
                                                         precio_compra=ingreso.precio_compra,
-                                                        stock=ingreso.cantidad,
-                                                        precio_ponderado=ingreso.precio_compra)
+                                                        stock=ingreso.cantidad)
             else:
                 for registro in registros:
-                    suma = registro.precio_ponderado * producto.stock
                     totalCantidad = producto.stock
-                suma += ingreso.precio_compra * ingreso.cantidad
+                suma = ingreso.precio_compra * ingreso.cantidad
                 totalCantidad += ingreso.cantidad
                 resultado = int(suma / totalCantidad)
                 RegistroTemporalProducto.objects.create(id_prod_id=ingreso.id_prod_id,
                                                         precio_compra=ingreso.precio_compra,
-                                                        stock=ingreso.cantidad,
-                                                        precio_ponderado=resultado)
+                                                        stock=ingreso.cantidad)
         orden_adq.save()
         return HttpResponseRedirect(self.success_url)
 

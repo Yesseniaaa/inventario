@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block page_name%} Recinto: {{ recinto.nombre }} {% endblock %}
+{% block page_description %}
+        <p>Actualizando el recinto</p>
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Actualizar recinto</button>
+        <br><br>
+            <a href="{% url 'listar_recinto' %}">Volver al listado de recintos</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+
+{% block page_name%} Salidas {% endblock %}
+{% block page_description %}Bienvenido{% endblock %}
+
+
+{% block content %}
+    <h1>Borrar Salida</h1>
+    <form method="post">{% csrf_token %}
+        Estas seguro que quieres borrar la salida del funcionario : "{{ object.id_funcionario }}" ?
+        <input type="submit" value="Borrar" />
+    </form>
+{% endblock %}

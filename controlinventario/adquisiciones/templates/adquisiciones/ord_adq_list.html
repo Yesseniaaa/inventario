@@ -37,7 +37,6 @@
     			<th>Proveedor</th>
                 <th>Precio compra (CLP)</th>
                 <th>Cantidad</th>
-                <th>Codigo</th>
                 <th>Fecha</th>
                 <th>Estado</th>
                 <th>Opciones</th>
@@ -52,7 +51,6 @@
 		    			<th>{{ord_adq.id_prov.nombre}}</th>
 		    			<th class="precio_compra">{{ord_adq.precio_compra}}</th>
                         <th class="cantidad">{{ord_adq.cantidad}}</th>
-                        <th>{{ord_adq.codigo}}</th>
                         <th>{{ord_adq.created | date:"d-m-Y"}}</th>
 		    			<th>
                             {% if ord_adq.estado ==  'pagado' %}
@@ -85,7 +83,6 @@
                 <th>TOTAL</th>
                 <th id="total_compras"></th>
                 <th id="total_cantidad"></th>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
