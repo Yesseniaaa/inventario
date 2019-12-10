@@ -24,7 +24,7 @@
                 {% for categoria in object_list %}
                     {% if categoria.estado %}
                         <tr>
-                            <td>{{ categoria.nombre }}</td>
+                            <td><a href="{% url 'listar_cat_prod' pk=categoria.pk %}">{{ categoria.nombre }}</td>
                             <td>{{ categoria.descripcion }}</td>
                             <td>
                                 <a class="btn btn-primary" href="{% url 'editar_categoria' pk=categoria.pk %}">Actualizar</a>

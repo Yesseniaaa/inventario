@@ -54,7 +54,7 @@
 
 {% block custom_js %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script src="{% static 'salidas/totalventa.js' %}"></script>
+    <script src="{% static 'core/js/totalventa.js' %}"></script>
     <script type="text/javascript">
 		function CargarProducto(id, cantidad){
 			return new Promise((resolve, reject) => {
@@ -87,9 +87,9 @@
 					},*/
 					closeOnSelect: true
 			    });
-				{% if ven_prod %}
+				{% if sal_prod %}
 					var ids_ingreso = [];
-					{% for ingreso in ven_prod %}
+					{% for ingreso in sal_prod %}
 						CargarProducto({{ingreso.id_prod.id_prod}},{{ingreso.cantidad}})
 						.then(data => sumador.init())
 						.catch(error => console.error(error));

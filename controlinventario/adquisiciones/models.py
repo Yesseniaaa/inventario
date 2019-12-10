@@ -29,6 +29,8 @@ class Proveedor(models.Model):
 class OrdenAdq(models.Model):
     id = models.AutoField(primary_key=True)
     id_prov = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
+    factura = models.IntegerField(validators=[ValidateMayorCero])
+    fecha_factura = models.DateField()
     productos = models.ManyToManyField(Producto, through="Ingreso")
     precio_compra = models.IntegerField(validators=[ValidateMayorCero])
     cantidad = models.IntegerField(validators=[ValidateMayorCero])

@@ -35,9 +35,10 @@
     		<tr>
     			<th>#</th>
     			<th>Proveedor</th>
+                <th>N° Factura</th>
+                <th>Fecha factura</th>
                 <th>Precio compra (CLP)</th>
                 <th>Cantidad</th>
-                <th>Fecha</th>
                 <th>Estado</th>
                 <th>Opciones</th>
 
@@ -49,9 +50,10 @@
 					<tr class="estado-{{ord_adq.estado}}">
 						<th>{{ord_adq.id}}</th>
 		    			<th>{{ord_adq.id_prov.nombre}}</th>
+                        <th>{{ord_adq.factura}}</th>
+                        <th>{{ord_adq.fecha_factura}}</th>
 		    			<th class="precio_compra">{{ord_adq.precio_compra}}</th>
                         <th class="cantidad">{{ord_adq.cantidad}}</th>
-                        <th>{{ord_adq.created | date:"d-m-Y"}}</th>
 		    			<th>
                             {% if ord_adq.estado ==  'pagado' %}
                                 PAGADO

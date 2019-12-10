@@ -55,6 +55,12 @@ class ListarProducto(ListView):
     model = Producto
     template_name = 'inventario/listar_producto.html'
 
+def ListarCatProd(request,pk):
+    productos = Producto.objects.filter(id_cat=pk)
+    #categoria = Categoria.objects.get(id_cat=pk)
+    context = {'productos':productos}
+    return render(request, 'inventario/listar_cat_prod.html', context)
+
 class EditarProducto(SuccessMessageMixin,UpdateView):
     model = Producto
     form_class = ProductoFormUpdate

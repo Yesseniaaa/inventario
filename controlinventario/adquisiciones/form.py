@@ -1,29 +1,37 @@
 from django import forms
 from django.http import HttpResponseRedirect
 
-
-
+from inventario.models import Categoria
 from .models import Ingreso, Proveedor, OrdenAdq, Producto
 
 
 class ProductoForm(forms.ModelForm):
+    id_cat = forms.ModelMultipleChoiceField(label="Categoria",queryset=Categoria.objects.all().filter(estado=True).distinct().order_by('nombre'), widget=forms.CheckboxSelectMultiple())
     class Meta:
         model = Producto
 
-        exclude = ['cod_barra', 'merma', 'estado_prod', 'estado', 'stock', 'id_cat', 'stock_min']
-
+        exclude = ['merma', 'estado_prod', 'estado', 'stock']
+        fields = [
+            'nombre',
+            'cod_barra',
+            'descripcion',
+            'stock_min',
+            'id_cat',
+        ]
         labels = {
             'nombre' : 'Nombre producto',
+            'cod_barra' : 'Codigo',
             'descripcion' : 'Descripcion',
-            'precio_compra' : 'Precio compra',
-            'codigo' : 'Codigo Producto'
+            'stock_min' : 'Stock Crítico',
+            'id_cat' : 'Categoria',
         }
 
         widgets = {
             'nombre' : forms.TextInput(attrs={'class':'form-control'}),
+            'cod_barra': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': forms.TextInput(attrs={'class': 'form-control'}),
-            'precio_compra' : forms.NumberInput(attrs={'class':'form-control'}),
-            'codigo': forms.TextInput(attrs={'class': 'form-control'}),
+            'stock_min': forms.NumberInput(attrs={'class':'form-control'}),
+            'id_cat': forms.CheckboxSelectMultiple(),
         }
 
 
@@ -92,6 +100,8 @@ class OrdenAdqForm(forms.ModelForm):
 
             
         labels = {
+            'factura' : 'Numero de factura',
+            'fecha_factura' : 'Fecha factura',
             'productos' : 'Productos',
             'precio_compra' : 'Precio Compra',
             'cantidad' : 'Cantidad',
@@ -99,6 +109,8 @@ class OrdenAdqForm(forms.ModelForm):
         }
 
         widgets = {
+            'factura' : forms.NumberInput(attrs={'class':'form-control'}),
+            'fecha_factura' : forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}, format="%Y-%m-%d"),
             'productos' : forms.CheckboxSelectMultiple(),
             'precio_compra' : forms.NumberInput(attrs={'class':'form-control', 'readonly':'readonly', 'value':'0' , 'id':'totalPrecio'}),
             'cantidad': forms.NumberInput(attrs={'class':'form-control', 'readonly':'readonly', 'value':'0' , 'id':'totalCantidad'}),
@@ -117,6 +129,8 @@ class OrdenAdqInfo(forms.ModelForm):
         fields = '__all__'
 
         id_prov = forms.CharField(disabled=True)
+        factura = forms.CharField(disabled=True)
+        fecha_factura = forms.CharField(disabled=True)
         productos = forms.CharField(disabled=True)
         precio_compra = forms.CharField(disabled=True)
         cantidad = forms.CharField(disabled=True)
@@ -126,6 +140,8 @@ class OrdenAdqInfo(forms.ModelForm):
 
         labels = {
             'id_prov' : 'Proveedor',
+            'factura' : 'Numero de factura',
+            'fecha_factura' : 'Fecha factura',
             'productos' : 'Productos',
             'precio_compra' : 'Precio Compra',
             'cantidad' : 'Cantidad',
@@ -135,6 +151,8 @@ class OrdenAdqInfo(forms.ModelForm):
 
         widgets = {
             'id_prov' : forms.Select(attrs={'class':'form-control', 'readonly':'readonly'}),
+            'factura' : forms.NumberInput(attrs={'class':'form-control', 'readonly':'readonly'}),
+            'fecha_factura' : forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'readonly':'readonly'}, format="%Y-%m-%d"),
             'productos' : forms.CheckboxSelectMultiple(attrs={'readonly':'readonly'}),
             'precio_compra' : forms.TextInput(attrs={'class':'form-control', 'readonly':'readonly'}),
             'cantidad': forms.TextInput(attrs={'class':'form-control', 'readonly':'readonly'}),

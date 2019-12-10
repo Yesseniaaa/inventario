@@ -25,5 +25,5 @@ $(document).ready( function () {
         "sortDescending": ": Activar orden de columna desendente"
     }
       }
-    } );
+    });
 } );

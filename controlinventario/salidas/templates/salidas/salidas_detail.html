@@ -6,10 +6,9 @@
 
 {% block content %}
     <h1>Salidas</h1>
-    <h2>Nombre: {{object.id_funcionario}}</h2>
-    <h2>Trabajador : {{object.id_recinto}}</h2>
+    <h2>Funcionario : {{object.id_funcionario}}</h2>
+    <h2>Recinto : {{object.id_recinto}}</h2>
     <h2>Total : {{object.total}}</h2>
-    <h2>tipo : {{object.tipo}}</h2>
     <h2>productos : {{object.productos}}</h2>
-    <a href="{% url 'salidas_list' %}">Atrás</a>
+    <a href="{% url "salidas_list" %}">Atrás</a>
 {% endblock %}
