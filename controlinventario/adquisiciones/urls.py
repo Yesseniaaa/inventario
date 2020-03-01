@@ -35,6 +35,4 @@ urlpatterns = [
     path('producto/create-ajax', ProductoCreateAjax, name="adquisiciones_producto_create_ajax"),
     path('producto-list-ajax', ProductoListAjax , name="producto_list_ajax"),
     path('producto-view-ajax/<int:pk>/', ProductoViewAjax , name="producto_view_ajax"),
-
-
 ]

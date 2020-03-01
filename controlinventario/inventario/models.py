@@ -25,7 +25,7 @@ class Producto(models.Model):
     descripcion = models.CharField(max_length=100)
     precio_compra = models.IntegerField(validators=[ValidateMayorCero])
     stock = models.IntegerField(validators=[ValidateNumeroPositivo], default=0)
-    stock_min = models.IntegerField(validators=[ValidateNumeroPositivo], default=0)
+    stock_min = models.IntegerField(validators=[ValidateNumeroPositivo], default=0, null=True)
     merma = models.IntegerField(validators=[ValidateNumeroPositivo], default=0)
     codigo = models.CharField(max_length=50, null=True, blank=True)
     estado = models.CharField(max_length=20, default='pendiente', choices=ESTADOS)

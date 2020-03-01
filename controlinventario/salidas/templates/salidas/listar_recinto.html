@@ -16,6 +16,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>Descripción</th>
+                <th>Estado</th>
                 <th>Opciones</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                         <tr>
                             <td>{{ recinto.nombre }}</td>
                             <td>{{ recinto.descripcion }}</td>
+                            <td>Activado</td>
                             <td>
                                 <a class="btn btn-primary" href="{% url 'editar_recinto' pk=recinto.pk %}">Actualizar</a>
                                 <a class="btn btn-danger" href="{% url 'recinto_desactivar' pk=recinto.pk %}">Desactivar</a>
@@ -35,6 +37,7 @@
                         <tr style="color:GrayText;">
                             <td>{{ recinto.nombre }}</td>
                             <td>{{ recinto.descripcion }}</td>
+                            <td>Desactivado</td>
                             <td><a class="btn btn-default" href="{% url 'recinto_activar' pk=recinto.pk %}">Activar</a></td>
                         </tr>
                     {% endif %}

@@ -178,7 +178,7 @@ class OrdenAdqState(View):
         ingresos = Ingreso.objects.filter(id_adq_id=orden_adq)
         for ingreso in ingresos:
             producto = Producto.objects.get(id_prod=ingreso.id_prod_id)
-            #producto.stock += ingreso.cantidad
+            producto.stock += ingreso.cantidad
             producto.precio_compra = ingreso.precio_compra
             producto.save()
             registros = RegistroTemporalProducto.objects.filter(id_prod_id=ingreso.id_prod_id).order_by('-id')[:1]
@@ -231,6 +231,6 @@ def ProductoViewAjax(request, pk):
     return render(request, 'adquisiciones/bloqueProducto.html', {'producto': producto})    
 
 def ProductoListAjax(request):
-    productos = Producto.objects.all().extra(select={'id':'id_prod', 'text':'nombre'}).values('id', 'text')
+    productos = Producto.objects.all().extra(select={'id':'id_prod', 'text':'nombre', 'cod':'cod_barra'}).values('id', 'text', 'cod')
     productos_list = list(productos)
     return JsonResponse(productos_list, safe=False)
