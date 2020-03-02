@@ -122,7 +122,7 @@ class PrestamoForm(forms.ModelForm):
             'id_funcionario' : 'Funcionario',
             'id_recinto': 'Recinto',
             'devolucion': 'Devolución',
-            'total': 'total',
+            'total' : 'Total',
             'productos': 'productos',
         }
 
@@ -131,7 +131,7 @@ class PrestamoForm(forms.ModelForm):
             'id_fun' : forms.Select(attrs={'class':'form-control'}),
             'id_rec' : forms.Select(attrs={'class':'form-control'}),
             'devolucion': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}, format="%Y-%m-%d"),
-            'total' : forms.NumberInput(attrs={'class':'form-control', 'readonly':'readonly', 'id':'TotalPrestamo'}),
+            'total' : forms.NumberInput(attrs={'class':'form-control', 'readonly':'readonly', 'id':'TotalSalida'}),
             'productos' : forms.Select(attrs={'class':'form-control'}),
         }
 

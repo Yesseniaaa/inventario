@@ -24,7 +24,7 @@
 			<label>Devolución:</label>
 			<input type="text" class="form-control" readonly="readonly" value="{{prestamo.devolucion}}">
 		</p>
-        <p>
+		<p>
 			<label>Total:</label>
 			<input type="text" id="TotalSalida" class="form-control" readonly="readonly" ">
 		</p>
@@ -34,8 +34,7 @@
 	        		<div class="col-xs-4">
 	        			<label for="">Productos:</label>
 	        		</div>
-
-	        		<div class="col-xs-4">
+					<div class="col-xs-4">
 	        			<label for="">Precio Venta:</label>
 	        		</div>
 	        		<div class="col-xs-4">
@@ -48,9 +47,6 @@
 			                <div class="col-xs-4">
 			            <label class="">{{ salida.id_prod.nombre }}</label>
 			            </div>
-				            <div class="col-xs-4">
-				                <input readonly class="productos_precio" value="{{ prestamo.precio }}">
-				            </div>
 				            <div class="col-xs-4">
 				                <input readonly class="productos_cantidad" value="{{ prestamo.cantidad }}">
 				            </div>

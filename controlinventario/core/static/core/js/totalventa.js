@@ -1,6 +1,6 @@
 
 	sumador = {
-		objetoSumaPrecio: document.querySelector('#TotalVenta'),
+		objetoSumaPrecio: document.querySelector('#TotalSalida'),
 		objetoInputPrecio: null,
 		objetoInputCantidad: null,
 		init: function(){

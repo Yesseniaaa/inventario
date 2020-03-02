@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load staticfiles %}
+{% load static %}
 
 
 {% block page_name%} Salidas {% endblock %}
@@ -43,7 +43,8 @@
 	        			<label for="">Cantidad:</label>
 	        		</div>
 	        	</div>
-
+				
+				<div id="TotalSalida">0</div>
 	        	<div id="contenedor_productos" class="col-md-12"></div>
         	</div>
         </p>
@@ -68,9 +69,6 @@
 
 		}
     	$(document).ready(function() {
-
-    		
-    		
     		$('#boton-modal-agregar-producto').on('click', function(){
     			$('#modal-agregar-producto').modal();
     		});
@@ -84,7 +82,7 @@
 					    url: window.location.origin + "/adquisiciones/producto-list-ajax",
 					    dataType: 'json'
 					    //cache: false
-					},*/
+					},*/	
 					closeOnSelect: true
 			    });
 				{% if sal_prod %}
@@ -98,6 +96,7 @@
 					$('#js-data-example-ajax').val(ids_ingreso).trigger("change");
 			    {% endif %}
 			});
+
 		    $('#js-data-example-ajax').on('select2:select', function(e, data){
     			$.get( window.location.origin + "/salidas/producto-view-ajax/" + e.params.data.id, function( data ){
 				  	$('#contenedor_productos').append(data);
@@ -105,6 +104,7 @@
 				});
 
 		    });
+
 		    $('#js-data-example-ajax').on('select2:unselect', function(e){
     			$('#row-productos-'+ e.params.data.id).remove()
     			sumador.init();
