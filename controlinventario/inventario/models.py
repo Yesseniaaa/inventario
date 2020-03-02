@@ -23,7 +23,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=50)
     cod_barra = models.CharField(max_length=50, null=True, blank=True)
     descripcion = models.CharField(max_length=100)
-    precio_compra = models.IntegerField(validators=[ValidateMayorCero])
+    precio_compra = models.IntegerField(validators=[ValidateMayorCero], default=0, null=True)
     stock = models.IntegerField(validators=[ValidateNumeroPositivo], default=0)
     stock_min = models.IntegerField(validators=[ValidateNumeroPositivo], default=0, null=True)
     merma = models.IntegerField(validators=[ValidateNumeroPositivo], default=0)

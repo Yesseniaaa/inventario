@@ -205,9 +205,8 @@ class PrestamosCreate(CreateView):
             productos_value = request.POST.getlist('productos_precio')
             productos_cantidad = request.POST.getlist('productos_cantidad')
             for count, producto in enumerate(productos_id, start=0):
-                if (productos_cantidad[count] != '' and productos_value[count] != 0) or (
-                        productos_cantidad[count] != '' and productos_cantidad[count] != 0):
-                    print (Sal_prod.objects.create(id_prod_id=producto, id_prestamo_id=prestamo.id, cantidad=productos_cantidad[count]))
+                if (productos_cantidad[count] != '' and productos_value[count] != 0) or (productos_cantidad[count] != '' and productos_cantidad[count] != 0):
+                    Pre_prod.objects.create(id_prod_id=producto, id_prestamo_id=prestamo.id,precio=productos_value[count], cantidad=productos_cantidad[count])
             return HttpResponseRedirect(self.success_url)
         return render(request, self.template_name, {'form': form})
 

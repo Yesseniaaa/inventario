@@ -79,4 +79,4 @@ class Pre_prod(models.Model):
     updated = models.DateField(auto_now=True)
 
     def __str__(self):
-        return str(self.id_salida)
+        return str(self.id_prestamo)
