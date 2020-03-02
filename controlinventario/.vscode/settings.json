@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "C:\\Miniconda3\\envs\\py37\\python.exe"
+    "python.pythonPath": "/Users/2hubrulee/Projects/inventario/controlinventario/venv/bin/python3",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }
