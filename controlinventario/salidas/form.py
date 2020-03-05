@@ -28,6 +28,7 @@ class FuncionarioForm(forms.ModelForm):
             'materno',
             'mail',
             'telefono',
+            'cargo',
             'id_recinto',
         ]
         labels = {
@@ -37,6 +38,7 @@ class FuncionarioForm(forms.ModelForm):
             'materno' : 'Apellido Materno',
             'mail' : 'Mail',
             'telefono' : 'Teléfono',
+            'cargo' : 'Cargo',
             'id_recinto' : 'Recinto',
         }
         widgets = {
@@ -46,6 +48,7 @@ class FuncionarioForm(forms.ModelForm):
 			'materno': forms.TextInput(attrs={'class': 'form-control'}),
 			'mail': forms.EmailInput(attrs={'class': 'form-control'}),
 			'telefono': forms.NumberInput(attrs={'class': 'form-control'}),
+			'cargo': forms.TextInput(attrs={'class': 'form-control'}),
             'id_recinto': forms.CheckboxSelectMultiple(),
         }
         

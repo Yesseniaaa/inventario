@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from .forms import *
+from .models import Activofijo
 from django.views.generic import CreateView, UpdateView, ListView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
@@ -17,9 +18,11 @@ class CrearActivofijo(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('crear_activofijo')
     success_message = "El Activo Fijo fue creado con éxito."
 
-class ListarActivofijo(ListView):
-    model = Activofijo
-    template_name = 'activofijo/listar_activofijo.html'
+def ListarActivofijo(request):
+    activosfijos = Activofijo.objects.all()
+    print (activosfijos)
+    context = {'activosfijos':activosfijos}
+    return render(request,'activofijo/listar_activofijo.html', context)
 
 def EditarActivofijo(request,pk):
     activofijo = Activofijo.objects.get(id=pk)

@@ -21,8 +21,8 @@
             <th>Recinto</th>
             <th>Opciones</tr>
          <tbody>
-            {% if object_list %}
-                {% for activofijo in object_list %}
+            {% if activosfijos %}
+                {% for activofijo in activosfijos %}
                     {% if activofijo.estado is True %}
                         <tr>
                             <td>{{ activofijo.nombre }}</td>
@@ -33,10 +33,6 @@
                             <td>
                                 <a class="btn btn-primary" href="{% url 'editar_activofijo' pk=activofijo.pk %}">Actualizar</a>
                                 <a class="btn btn-danger" href="{% url 'activofijo_desactivar' pk=activofijo.pk %}">Desactivar</a>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary" href="{% url 'editar_categoria' pk=categoria.pk %}">Actualizar</a>
-                                <a class="btn btn-danger" href="{% url 'categoria_desactivar' pk=categoria.pk %}">Desactivar</a>
                             </td>
                         </tr>
                     {% elif  activofijo.estado is False %}

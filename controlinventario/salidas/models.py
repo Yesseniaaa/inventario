@@ -30,6 +30,7 @@ class Funcionario(models.Model):
     mail = models.CharField(max_length=50, unique=True)
     telefono = models.CharField(max_length=9, validators=[ValidarTelefono])
     estado = models.BooleanField(default=True)
+    cargo = models.CharField(max_length=50, default='')
 
     def __str__(self):
         return '{}'.format(self.nombres)

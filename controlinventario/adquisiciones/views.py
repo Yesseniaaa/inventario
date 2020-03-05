@@ -209,9 +209,9 @@ class IngresoList(ListView):
     template_name = 'adquisiciones/ingreso_list.html'
 
 class IngresoCreate(CreateView):
-    model = Ingreso
-    form_class = IngresoForm
-    template_name = 'adquisiciones/ingreso_form.html'
+    model = Producto
+    form_class = ProductoForm
+    template_name = 'adquisiciones/producto_form.html'
     success_url = reverse_lazy('adquisiciones_ingresos')
 
 class IngresoUpdate(UpdateView):
