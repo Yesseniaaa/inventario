@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib import messages
 
 from .models import Proveedor, OrdenAdq, Ingreso, Producto, RegistroTemporalProducto
-from .form import IngresoForm, ProveedorForm, OrdenAdqForm, ProductoForm, OrdenAdqInfo
+from .form import IngresoForm, ProveedorForm, OrdenAdqForm, ProductoForm, OrdenAdqInfo, OrdenAdqReturnForm
 
 def index(request):
     return render(request,'adquisiciones/index.html')
@@ -100,7 +100,8 @@ def OrdenAdqList(request):
 class OrdenAdqCreate(CreateView):
     model = OrdenAdq
     form_class = OrdenAdqForm
-    template_name = 'adquisiciones/ord_adq_form.html'
+   #template_name = 'adquisiciones/ord_adq_form.html'
+    template_name = 'adquisiciones/ord_adq_create.html'
     success_url = reverse_lazy('adquisiciones_ordenes_adquisiciones')
 
     def post(self, request, *args, **kwargs):
@@ -119,6 +120,55 @@ class OrdenAdqCreate(CreateView):
     def get(self, request, *args, **kwargs):
         form = self.form_class()
         return render(request, self.template_name, {'form': form})
+
+class OrdenAdqCreateInvoce(CreateView):
+    model = OrdenAdq
+    form_class = OrdenAdqForm
+    template_name = 'adquisiciones/ord_adq_form.html'
+    #template_name = 'adquisiciones/ord_adq_create.html'
+    success_url = reverse_lazy('adquisiciones_ordenes_adquisiciones')
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            adquisicion = form.save()
+            productos_id = request.POST.getlist('productos_ids')
+            productos_value_precio = request.POST.getlist('productos_precio')
+            productos_value_cantidad = request.POST.getlist('productos_cantidad')
+            for count, producto in enumerate(productos_id, start=0):
+                if (productos_value_precio[count] != '' and productos_value_precio[count] != 0) or (productos_value_cantidad[count] != '' and productos_value_cantidad[count] != 0):
+                   Ingreso.objects.create(id_adq_id=adquisicion.id, id_prod_id=producto, precio_compra=productos_value_precio[count], cantidad=productos_value_cantidad[count])
+            return redirect(self.success_url)
+        return render(request, self.template_name, {'form': form})
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+class OrdenAdqCreateReturn(CreateView):
+    model = Producto
+    #form_class = OrdenAdqReturnForm
+    template_name = 'adquisiciones/ord_adq_form_return.html'
+    #template_name = 'adquisiciones/ord_adq_create.html'
+    success_url = reverse_lazy('adquisiciones_ordenes_adquisiciones')
+
+    def post(self, request, *args, **kwargs):
+        #form = self.form_class(request.POST)
+       # if form.is_valid():
+            #devolucion = form.save()
+            code = request.POST.getlist('code')
+            productos_value_name = request.POST.getlist('name')
+            productos_value_cantidad = request.POST.getlist('productos_cantidad')
+            #for count, producto in enumerate(productos_id, start=0):
+               # if (productos_value_precio[count] != '' and productos_value_precio[count] != 0) or (productos_value_cantidad[count] != '' and productos_value_cantidad[count] != 0):
+                #   Ingreso.objects.create(id_adq_id=adquisicion.id, id_prod_id=producto, precio_compra=productos_value_precio[count], cantidad=productos_value_cantidad[count])
+            return redirect(self.success_url)
+            return render(request, self.template_name) 
+
+    def get(self, request, *args, **kwargs):
+        #form = self.form_class()
+        print("get OrdenAdqCreateReturn ")
+        return render(request, self.template_name)        
 
 class OrdenAdqInfo(UpdateView):
     model = OrdenAdq

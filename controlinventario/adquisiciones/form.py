@@ -87,6 +87,35 @@ class ProveedorForm(forms.ModelForm):
         }
 
 
+class OrdenAdqReturnForm(forms.ModelForm):
+
+    id_prov = forms.ModelChoiceField(label='Proveedor', queryset=Proveedor.objects.all().filter(estado=True).distinct(), widget=forms.Select(attrs={'class':'form-control'}))
+
+    class Meta:
+        model = Producto
+
+
+        exclude = ['estado','productos','codigo']
+
+
+            
+        labels = {
+            'code' : 'Codigo',
+            'producto' : ' Nombre  de Producto',
+            'fecha' : 'Fecha',          
+            'cantidad' : 'Cantidad(unidades)',
+            'precio_ponderado' : 'Precio Ponderado',
+        }
+
+        widgets = {
+            'code' : forms.NumberInput(attrs={'class':'form-control'}),
+            'producto' : forms.NumberInput(attrs={'class':'form-control'}),
+            'fecha_factura' : forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}, format="%Y-%m-%d"),
+            'cantidad': forms.NumberInput(attrs={'class':'form-control', 'readonly':'readonly', 'value':'0' , 'id':'totalCantidad'}),
+            'precio_ponderado' : forms.NumberInput(attrs={'class':'form-control', 'readonly':'readonly', 'value':'0' , 'id':'totalPrecio'}),
+            
+        }
+
 class OrdenAdqForm(forms.ModelForm):
 
     id_prov = forms.ModelChoiceField(label='Proveedor', queryset=Proveedor.objects.all().filter(estado=True).distinct(), widget=forms.Select(attrs={'class':'form-control'}))
@@ -117,7 +146,6 @@ class OrdenAdqForm(forms.ModelForm):
             'estado': forms.Select(attrs={'class':'form-control'})
 
         }
-
 
 class OrdenAdqInfo(forms.ModelForm):
     class Meta:

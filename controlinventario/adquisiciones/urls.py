@@ -3,7 +3,7 @@ from . import views
 
 from .views import IngresoList, IngresoCreate, IngresoUpdate, IngresoDelete
 from .views import ProveedorList, ProveedorCreate, ProveedorUpdate, ProveedorDelete, ProveedorSoftDelete, ProveedorActivar
-from .views import OrdenAdqList, OrdenAdqCreate, OrdenAdqUpdate, OrdenAdqState, OrdenAdqInfo
+from .views import OrdenAdqList, OrdenAdqCreate, OrdenAdqUpdate, OrdenAdqState, OrdenAdqInfo ,OrdenAdqCreateInvoce, OrdenAdqCreateReturn
 from .views import ProductoCreate, ProductoViewAjax, ProductoListAjax, ProductoCreateAjax
 
 
@@ -25,6 +25,8 @@ urlpatterns = [
 
     path('orden_adquisicion/', OrdenAdqList, name="adquisiciones_ordenes_adquisiciones"),
     path('orden_adquisicion/create', OrdenAdqCreate.as_view(), name="adquisiciones_ordenes_create"),
+    path('orden_adquisicion/create/factura', OrdenAdqCreateInvoce.as_view(), name="adquisiciones_ordenes_create_factura"),
+    path('orden_adquisicion/create/devolucion', OrdenAdqCreateReturn.as_view(), name="adquisiciones_ordenes_create_devolucion"),
     path('orden_adquisicion/update/<int:pk>/', OrdenAdqUpdate.as_view(), name="adquisiciones_ordenes_update"),
     path('orden_adquisicion/state/<int:pk>/', OrdenAdqState.as_view(), name="adquisiciones_ordenes_state"),
     path('orden_adquisicion/info/<int:pk>/', OrdenAdqInfo.as_view(), name="adquisiciones_ordenes_info"),
