@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'adquisiciones',
     'inventario',
     'core',
+    'generador_excel'
 ]
 
 MIDDLEWARE = [

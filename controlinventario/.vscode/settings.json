@@ -1,5 +1,12 @@
 {
-    "python.pythonPath": "/Users/2hubrulee/Projects/inventario/controlinventario/venv/bin/python3",
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--line-length", "100"],
+  "editor.formatOnSave": true,
+  "python.pythonPath": "venv/bin/python",
+  "[html]": {
+    "editor.formatOnSave": false
+  },
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.pylintArgs": ["--load-plugins=pylint_django"]
 }

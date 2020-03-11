@@ -1,13 +1,17 @@
 {% extends 'core/base.html' %}
 
 
-{% block page_name%} Inventario {% endblock %}
-{% block page_description %}Bienvenido modulo inventario {% endblock %}
+{% block page_name%} Estadisticas {% endblock %}
+{% block page_description %}Bienvenido modulo estadisticas {% endblock %}
 
 
 {% block content %}
+<div class="m-5 pb-5">
     <div class="alert alert-success">
-        Bienvenido al modulo inventario
+        Bienvenido al modulo estadisticas
         <br>
     </div>
+    <a class="btn btn-primary" href="{% url 'listar_estadistica' %}">Reporte 1</a>
+    <a class="btn btn-primary" href="{% url 'listar_estadistica2' %}">Reporte 2</a>
+</div>
 {% endblock %}
