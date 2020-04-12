@@ -1,0 +1,95 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+
+
+{% block page_name%} Factura {% endblock %}
+{% block page_description %}Total de facturas {% endblock %}
+<div class="container">
+
+
+{% block custom_css %}
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+{% endblock %}
+
+
+
+{% block content %}
+    <table id="myTable" class="table" style="width:100%">
+    	<thead>
+    		<tr>
+    			<th>#</th>
+    			<th>Proveedor</th>
+                <th>N° Factura</th>
+                <th>Fecha factura</th>
+                <th>Precio compra (CLP)</th>
+                <th>Cantidad</th>
+                <th>Opciones</th>
+
+    		</tr>
+        </thead>
+        <tbody>
+    		{% if ordAdq %}
+	    		{% for ord_adq in ordAdq %}
+						<th>{{ord_adq.id}}</th>
+		    			<th>{{ord_adq.id_prov.nombre}}</th>
+                        <th>{{ord_adq.factura}}</th>
+                        <th>{{ord_adq.fecha_factura}}</th>
+		    			<th class="precio_compra">{{ord_adq.precio_compra}}</th>
+                        <th class="cantidad">{{ord_adq.cantidad}}</th>
+                        <th>
+                            <a class="btn btn-info" href="{% url 'adquisiciones_ordenes_info' ord_adq.id %}">Info</a>
+                            <a class="btn btn-primary" href="{% url 'adquisiciones_ordenes_update' ord_adq.id %}">Actualizar</a>
+                        </th>
+		    		</tr>
+	    		{% endfor %}
+    		{% else %}
+				<h1>No hay registros de facturas</h1>
+    		{% endif %}
+    	</tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>TOTAL</th>
+                <th id="total_compras"></th>
+                <th id="total_cantidad"></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tfoot> 
+    </table>
+
+    <a href="{% url 'adquisiciones_ordenes_create_factura' %}">
+        <button class="btn btn-success">Crear</button>
+    </a>
+{% endblock %}
+
+
+{% block custom_js %}
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="{% static 'core/js/DataTable.js' %}"></script>
+
+    <script>
+        $(document).ready(function(){
+            var suma_precio_compra = 0;
+            var suma_cantidad = 0;
+            $('.precio_compra').each(function(index, item){
+                suma_precio_compra += parseInt($(item).html());
+                //console.log($(item).html());
+            });
+
+            $('.cantidad').each(function(index, item){
+                suma_cantidad += parseInt($(item).html());
+                //console.log($(item).html());
+            });
+
+            $('#total_compras').html(suma_precio_compra);
+            $('#total_cantidad').html(suma_cantidad);
+            //console.log(suma_precio_compra);
+            
+        });
+    </script>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block page_name%} Activo Fijo {% endblock %}
+{% block page_description %}
+    <p>Crear Activo Fijo</p>
+{% endblock %}
+
+{% block content %}
+    <div class="m-5 pb-5">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-success" type="submit">Crear Activo Fijo</button>
+            <br><br>
+            <a href="{% url 'listar_activofijo' %}">Volver al listado de Activos Fijos</a>
+        </form>
+    </div>
+{% endblock %}

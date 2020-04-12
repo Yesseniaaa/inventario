@@ -1,0 +1,10 @@
+{% extends "adminlte/login.html" %}
+{% load staticfiles %}
+{% block logo %}
+    {% block logo_img %}
+        <div class="login-logo">
+            <img src="{% static 'img/logo.png' %}" style="display: block; margin: auto; width: 60%;">
+            <a href="#"> Bienvenido </a>
+        </div>
+    {% endblock %}
+{% endblock %}

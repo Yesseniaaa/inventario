@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+
+{% load staticfiles %}
+{% block custom_css %}
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
+{% endblock %}
+{% block page_name%} Estadisticas {% endblock %}
+{% block page_description %}Bienvenido {% endblock %}
+
+
+{% block content %}
+    <div class="m-5 pb-5">
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                        {% if form %}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    {{ field.errors }}
+                                    {{ field.label_tag }} {{ field }}
+                                    {% if field.help_text %}
+                                    <p class="help">{{ field.help_text|safe }}</p>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <h2>No hay registros de productos</h2>
+                        {% endif %}
+                    <div class="form-group">
+                        <input type="submit" value="Generar" class="btn btn-success">
+                    </div>
+                </form>
+                {% if productoBuscado %}
+                    <h1>Grafica para {{productoBuscado.nombre}}</h1>
+
+                <canvas id="myChart" width="400" height="400"></canvas>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <canvas id="grafico"></canvas>
+                
+            </div>
+            
+        </div>
+        <div>
+            <a href="{% url 'index_inventario' %}">Volver al listado de estadisticas</a>
+        </div>
+    </div>
+{% endblock %}

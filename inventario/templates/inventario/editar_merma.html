@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+
+{% block page_name %} Merma {% endblock %}
+{% block page_description %}
+    <p>Actualizando la merma</p>
+{% endblock %}
+
+{% block content %}
+    <div class="m-5 pb-5">
+        <form method="post">
+            {% csrf_token %}
+
+            {% if form %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                        {% if field.help_text %}
+                            <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="form-group">
+                <input type="submit" value="Generar" class="btn btn-success">
+                <br><br>
+                <a href="{% url 'listar_producto' %}">Volver al listado de productos</a>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+    <script>
+        function confirmar() {
+            if (confirm('¿Está seguro que desea agregar la merma?'))
+                return true;
+            else
+                return false;
+        }
+    </script>
+{% endblock %}

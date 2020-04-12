@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+
+
+
+{% block page_name%} Devolución {% endblock %}
+{% block page_description %}Información{% endblock %}
+
+
+{% block content %}
+
+		<p>
+			<label>Producto:</label>
+			<input type="text" class="form-control" readonly="readonly" value="{{devolucion.id_producto.nombre}}">
+		</p>
+		<p>
+			<label>Cantidad:</label>
+			<input type="text" class="form-control" readonly="readonly" value="{{devolucion.cantidad}}">
+		</p>
+		<p>
+			<label>Fecha:</label>
+			<input type="text" class="form-control" readonly="readonly" value="{{devolucion.fecha}}">
+		</p>
+
+        <a class="btn btn-success" href="{% url 'adquisiciones_ordenes_devoluciones' %}">Volver</a>
+{% endblock %}
+
+{% block custom_js %}
+    <script src="{% static 'core/js/totalPrecioVentaAdquisiciones.js' %}"></script>
+
+{% endblock %}

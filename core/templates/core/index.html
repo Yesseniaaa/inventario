@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+
+{% load staticfiles %}
+{% block custom_css %}
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
+{% endblock %}
+{% block page_name%} Inicio {% endblock %}
+
+
+{% block content %}
+    <div class="alert alert-success">
+        Bienvenido al Control de Inventario de La Corporacíon San Joaquín
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="grafico" style="display: none;"></canvas>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.10/dist/sweetalert2.all.min.js"></script>
+    <script>
+
+        var ctx2 = document.getElementById("grafico").getContext('2d');
+        var grafico = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+              labels: ["Infor-Ingen", "PC Factory", "TT Chile", "PC Express"],
+              datasets: [{
+                label: "PVA",
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
+                data: [5000,5267,734,784]
+              }]
+            },
+            options: {
+              title: {
+                display: true,
+                text: 'Productos vendidos por año'
+              }
+            }
+        });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+
+
+{% block page_name%} Personal {% endblock %}
+{% block page_description %}Bienvenido{% endblock %}
+
+
+{% block content %}
+    <h1>Personal</h1>
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a class="btn btn-warning" href="{% url 'funcionario_list' %}">
+        Volver
+        </a>
+    </form>
+
+{% endblock %}
+
+{% block custom_js %}
+    <script src="{% static 'core/js/rut.js' %}"></script>
+{% endblock %}

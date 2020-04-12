@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+
+
+{% block page_name%} Ordenes de adquisicion {% endblock %}
+{% block page_description %}Eliminar la orden {% endblock %}
+
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <h3>¿Desea desactivar el registro de {{object.id}}</h3>
+        <button type="submit" class="btn btn-danger">Borrar</button>
+        <a class="btn btn-default" href="{% url 'adquisiciones_ordenes_adquisiciones' %}">Cancelar</a>
+    </form>
+{% endblock %}

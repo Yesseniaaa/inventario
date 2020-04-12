@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+
+{% block page_name%} Estadisticas {% endblock %}
+{% block page_description %}Bienvenido modulo estadisticas {% endblock %}
+
+
+{% block content %}
+<div class="m-5 pb-5">
+    <div class="alert alert-success">
+        Bienvenido al modulo estadisticas
+        <br>
+    </div>
+    <a class="btn btn-primary" href="{% url 'listar_estadistica' %}">Tarjeta de Existencias</a>
+    <a class="btn btn-primary" href="{% url 'listar_estadistica2' %}">Consumo</a>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'core/base.html' %}
+
+{% block page_name%} Producto: {{ producto.nombre }}{% endblock %}
+{% block page_description %}Datos del producto{% endblock %}
+
+{% block content %}
+    <div class="m-5 pb-5">
+        <p>
+            <strong>Código de barra:</strong>
+            {{ producto.cod_barra }}
+        </p>
+        <p>
+        <strong>Precio de compra:</strong>
+        {{ producto.precio_compra }}
+        </p>
+        <p>
+            <strong>Stock:</strong>
+            {{ producto.stock }}
+        </p>
+        <p>
+            <strong>Stock mínimo:</strong>
+            {{ producto.stock_min }}
+        </p>
+        <p>
+            <strong>Merma:</strong>
+            {{ producto.merma }}
+        </p>
+        <p>
+            <strong>Descripción:</strong>
+            {{ producto.descripcion }}
+        </p>
+        <p>
+            <strong>Categoría:</strong>
+            {% for categoria in producto.id_cat.all %}
+                {% if categoria.estado %}
+                    {{ categoria.nombre }}.
+                {% endif %}
+            {% endfor %}
+        </p>
+        <a class="btn btn-primary" href="{% url 'editar_producto' pk=producto.pk %}">Actualizar</a>
+        <a class="btn btn-warning" href="{% url 'resetear_merma' pk=producto.pk %}" onclick="return confirmar()">Resetear merma</a>
+        <a class="btn btn-info" href="{% url 'historial_precio' pk=producto.pk %}">Ver el historial de precios</a>
+        <br><br>
+        <a href="{% url 'listar_producto' %}">Volver al listado de productos</a>
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+    <script>
+        function confirmar(){
+            if(confirm('¿Está seguro que desea resetear la merma?'))
+                return true;
+            else
+                return false;
+        }
+    </script>
+{% endblock %}

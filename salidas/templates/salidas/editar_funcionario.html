@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block page_name%} Personal: {{ funcionario.nombre }} {% endblock %}
+{% block page_description %}
+        <p>Actualizando el personal</p>
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Actualizar personal</button>
+        <br><br>
+            <a href="{% url 'funcionario_list' %}">Volver al listado de personal</a>
+    </form>
+{% endblock %}

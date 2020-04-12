@@ -1,0 +1,67 @@
+{% extends 'adminlte/lib/_main_sidebar.html' %}
+
+{% block nav_heading %}MENU PRINCIPAL{% endblock %}
+
+{% block nav_links %}
+    <li>
+        <a href="{% url 'index' %}">
+            <i class="glyphicon glyphicon-list-alt"></i> <span>Inventario
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'listar_categoria' %}">
+            <i class="fa fa-cubes"></i> Categorias
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'listar_producto' %}">
+            <i class="fa fa-cube"></i> Productos
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'listar_activofijo' %}">
+            <i class="fa fa-cube"></i> Activos Fijos
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'adquisiciones_producto' %}">
+            <i class="fa fa-barcode"></i> Ingresar Producto
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'adquisiciones_proveedores' %}">
+            <i class="fa fa-drivers-license"></i> Proveedores
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'adquisiciones_selector' %}">
+            <i class="fa fa-file-pdf-o"></i> Ingreso de Stock
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'listar_recinto' %}">
+            <i class="fa fa-home"></i>  Recintos
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'funcionario_list' %}">
+            <i class="fa fa-users"></i>  Personal
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'salidas_list' %}">
+            <i class="fa fa-dollar"></i> Salidas
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'prestamos_list' %}">
+            <i class="fa fa-money"></i><span>Prestamos
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'index_inventario' %}">
+            <i class="fa fa-area-chart"></i> Estadística
+        </a>
+    </li>
+          
+{% endblock nav_links %}

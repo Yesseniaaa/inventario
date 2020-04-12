@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+
+
+{% block page_name%} Personal {% endblock %}
+{% block page_description %}Bienvenido{% endblock %}
+
+
+{% block content %}
+		<p>
+			<label>Nombres:</label>
+			<input type="text" class="form-control" readonly="readonly" value="{{object.nombres}}">
+		</p>
+		<p>
+			<label>Apellido:</label>
+			<input type="text" class="form-control" readonly="readonly" value="{{object.paterno}} {{object.materno}}">
+		</p>
+		<p>
+			<label>Rut:</label>
+			<input type="text" class="form-control" readonly="readonly" value="{{object.rut}}">
+		</p>
+		<p>
+			<label>E-Mail:</label>
+			<input type="text" class="form-control" readonly="readonly" value="{{object.mail}}">
+		</p>
+		<p>
+			<label>Teléfono:</label>
+			<input type="text" class="form-control" readonly="readonly" value="{{object.telefono}}">
+		</p>
+
+
+        <a class="btn btn-warning" href="{% url 'funcionario_list' %}">Volver</a>
+{% endblock %}

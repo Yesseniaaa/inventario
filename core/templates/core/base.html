@@ -1,0 +1,17 @@
+{% extends 'adminlte/base.html' %}
+{% block stylesheets %}
+    {{ block.super }}
+    {% block custom_css %}{% endblock %}
+{% endblock %}
+
+{% block title %} Bienvenido {% endblock %}
+{% block nav_sidebar %}
+    {% include 'core/adminlte/libreria/_main_sidebar.html' %}
+{% endblock %}
+{% block nav_header %}
+    {% include 'core/adminlte/libreria/_main_header.html' %}
+{% endblock %}
+{% block javascript %}
+    {{ block.super }}
+    {% block custom_js %}{% endblock %}
+{% endblock %}
